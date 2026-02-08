@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlogTech Platform - Muhammad Imran</title>
-    <meta name="description" content="Modern blogging platform with content management, user authentication, and responsive design built with Next.js, React, and PostgreSQL.">
+    <title>Listing Sites Generator - Muhammad Imran</title>
+    <meta name="description" content="Dynamic listing website generator with customizable templates and easy content management built with Next.js, TypeScript, and PostgreSQL.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
@@ -356,7 +356,7 @@
         }
         
         .role-list li::before {
-            content: '🚀';
+            content: '📋';
             margin-top: 0.1rem;
         }
         
@@ -478,21 +478,20 @@
     <!-- Project Hero -->
     <section class="project-hero">
         <div class="container">
-            <h1>BlogTech Platform</h1>
-            <p class="subtitle">Modern Content Management System</p>
+            <h1>Listing Sites Generator</h1>
+            <p class="subtitle">Dynamic Listing Platform</p>
             <p class="description">
-                A sophisticated blogging platform that combines powerful content management 
-                with exceptional user experience. Built with cutting-edge technologies to deliver 
-                fast, secure, and scalable blogging solution.
+                Dynamic listing website generator with customizable templates and easy content management. 
+                Built with Next.js and TypeScript to create scalable, performant listing platforms.
             </p>
             <div class="live-buttons">
-                <a href="https://blogstech.site/" class="btn-primary" target="_blank">
-                    <i class="fas fa-external-link-alt"></i>
-                    Live Demo
-                </a>
-                <a href="https://github.com/muhammadimran9/blogstech" class="btn-secondary" target="_blank">
+                <a href="https://github.com/muhammadimran9/listing-sites" class="btn-primary" target="_blank">
                     <i class="fab fa-github"></i>
                     View Code
+                </a>
+                <a href="project-listing.html" class="btn-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    Details
                 </a>
             </div>
         </div>
@@ -506,24 +505,25 @@
                 <div class="section-content">
                     <h3>What is this project?</h3>
                     <p>
-                        BlogTech is a comprehensive content management and blogging platform designed 
-                        for content creators, businesses, and developers. It provides all the tools 
-                        needed to create, manage, and publish engaging content efficiently.
+                        Listing Sites Generator is a comprehensive platform for creating dynamic listing websites 
+                        with customizable templates. It provides an easy-to-use interface for managing listings, 
+                        categories, and content with powerful search and filtering capabilities.
                     </p>
                     
                     <h3>Business Goal</h3>
                     <p>
-                        To democratize content creation by providing an intuitive platform that 
-                        combines powerful features with ease of use, enabling anyone to create 
-                        professional blogs without technical expertise.
+                        To create a flexible platform that enables businesses to quickly launch professional 
+                        listing websites without extensive development. Focus on ease of use, customization, 
+                        and scalability for various listing needs.
                     </p>
                     
                     <h3>Target Users</h3>
                     <ul>
-                        <li>Content creators and bloggers</li>
-                        <li>Businesses needing content management</li>
-                        <li>Development teams requiring CMS</li>
-                        <li>Digital marketing professionals</li>
+                        <li>Real estate agencies</li>
+                        <li>Job posting platforms</li>
+                        <li>E-commerce marketplaces</li>
+                        <li>Directory websites</li>
+                        <li>Classified ad platforms</li>
                     </ul>
                 </div>
             </div>
@@ -537,38 +537,35 @@
                 <h2>Technologies Used</h2>
                 <div class="tech-grid">
                     <div class="tech-card">
-                        <h4>Frontend</h4>
+                        <h4>Frontend Framework</h4>
                         <ul class="tech-list">
                             <li>Next.js with App Router</li>
-                            <li>React 18 with Server Components</li>
                             <li>TypeScript for type safety</li>
+                            <li>React Server Components</li>
                             <li>Tailwind CSS for styling</li>
-                            <li>Framer Motion for animations</li>
                             <li>React Query for data fetching</li>
                         </ul>
                     </div>
                     
                     <div class="tech-card">
-                        <h4>Backend</h4>
+                        <h4>Backend & Database</h4>
                         <ul class="tech-list">
                             <li>Next.js API Routes</li>
-                            <li>PostgreSQL with Prisma ORM</li>
-                            <li>NextAuth.js for authentication</li>
-                            <li>RESTful and GraphQL APIs</li>
-                            <li>Server-side rendering (SSR)</li>
-                            <li>Static site generation (SSG)</li>
+                            <li>PostgreSQL database</li>
+                            <li>Prisma ORM</li>
+                            <li>RESTful API design</li>
+                            <li>Database migrations</li>
                         </ul>
                     </div>
                     
                     <div class="tech-card">
-                        <h4>Tools & Services</h4>
+                        <h4>Features & Tools</h4>
                         <ul class="tech-list">
-                            <li>Vercel for deployment and hosting</li>
-                            <li>Cloudinary for image optimization</li>
-                            <li>Resend for email services</li>
-                            <li>Upstash for Redis caching</li>
-                            <li>Sentry for error monitoring</li>
-                            <li>GitHub Actions for CI/CD</li>
+                            <li>Static Site Generation (SSG)</li>
+                            <li>Server-Side Rendering (SSR)</li>
+                            <li>Image optimization</li>
+                            <li>SEO optimization</li>
+                            <li>Performance monitoring</li>
                         </ul>
                     </div>
                 </div>
@@ -584,32 +581,32 @@
                 <div class="section-content">
                     <h3>Content Management</h3>
                     <ul>
-                        <li>Rich text editor with markdown support</li>
-                        <li>Media library with image optimization</li>
-                        <li>Category and tag management system</li>
-                        <li>Scheduled content publishing</li>
-                        <li>SEO optimization tools</li>
-                        <li>Content versioning and drafts</li>
+                        <li>Dynamic listing creation and editing</li>
+                        <li>Customizable field templates</li>
+                        <li>Category and tag management</li>
+                        <li>Image and media uploads</li>
+                        <li>Bulk import/export functionality</li>
+                        <li>Content scheduling</li>
                     </ul>
                     
-                    <h3>User Experience</h3>
+                    <h3>Search & Filtering</h3>
                     <ul>
-                        <li>Responsive design for all devices</li>
-                        <li>Dark mode support</li>
-                        <li>Real-time search functionality</li>
-                        <li>Infinite scroll pagination</li>
-                        <li>Social sharing integration</li>
-                        <li>Comment system with moderation</li>
+                        <li>Advanced search functionality</li>
+                        <li>Multi-criteria filtering</li>
+                        <li>Sorting and pagination</li>
+                        <li>Faceted search options</li>
+                        <li>Real-time search results</li>
+                        <li>Search analytics</li>
                     </ul>
                     
-                    <h3>Performance & Security</h3>
+                    <h3>Customization</h3>
                     <ul>
-                        <li>Page load speed under 2 seconds</li>
-                        <li>Core Web Vitals optimization</li>
-                        <li>Content delivery network (CDN)</li>
-                        <li>DDoS protection and security headers</li>
-                        <li>Rate limiting and API security</li>
-                        <li>Database query optimization</li>
+                        <li>Multiple template options</li>
+                        <li>Custom field types</li>
+                        <li>Theme customization</li>
+                        <li>Responsive design</li>
+                        <li>SEO-friendly URLs</li>
+                        <li>Custom branding options</li>
                     </ul>
                 </div>
             </div>
@@ -624,13 +621,13 @@
                 <div class="role-section">
                     <h3>What I Built</h3>
                     <ul class="role-list">
-                        <li>Complete full-stack application architecture</li>
-                        <li>Custom content management system</li>
+                        <li>Complete Next.js application architecture</li>
+                        <li>TypeScript integration and type definitions</li>
+                        <li>Database schema design with Prisma</li>
+                        <li>Dynamic template system</li>
                         <li>Advanced search and filtering algorithms</li>
-                        <li>Real-time collaboration features</li>
-                        <li>Performance optimization pipeline</li>
-                        <li>Automated deployment workflows</li>
-                        <li>Comprehensive testing suite</li>
+                        <li>Admin dashboard for content management</li>
+                        <li>Performance optimization techniques</li>
                     </ul>
                 </div>
             </div>
@@ -641,27 +638,27 @@
     <section class="content-section">
         <div class="container">
             <div class="section-container">
-                <h2>Why This Matters</h2>
+                <h2>Why This Matters for Internship</h2>
                 <div class="section-content">
-                    <h3>Modern Development Practices</h3>
+                    <h3>Modern Web Development Skills</h3>
                     <p>
-                        This project showcases expertise in cutting-edge web technologies including 
-                        Next.js, TypeScript, and modern deployment strategies. It demonstrates 
-                        ability to build scalable, performant applications using industry best practices.
+                        Demonstrates expertise in Next.js, TypeScript, and modern web development practices. 
+                        Shows ability to work with cutting-edge technologies including server components, 
+                        SSR/SSG, and advanced React patterns.
                     </p>
                     
-                    <h3>Problem-Solving Capability</h3>
+                    <h3>Full-Stack Capability</h3>
                     <p>
-                        Successfully implemented complex features like real-time search, 
-                        content management, and performance optimization. Shows capability to 
-                        tackle challenging technical requirements and deliver elegant solutions.
+                        Successfully built a complete full-stack application with database integration, 
+                        API development, and frontend implementation. Proves ability to handle 
+                        complex projects from database to user interface.
                     </p>
                     
-                    <h3>Business Value Delivery</h3>
+                    <h3>Problem-Solving Innovation</h3>
                     <p>
-                        The platform directly addresses content creation challenges, improves 
-                        operational efficiency, and enhances digital presence. Proves ability to 
-                        create solutions that drive measurable business outcomes and user engagement.
+                        Created a flexible platform that solves real business needs for listing websites. 
+                        Demonstrates ability to think architecturally, design scalable solutions, and 
+                        deliver practical tools that provide real value to users.
                     </p>
                 </div>
             </div>
@@ -672,16 +669,16 @@
     <section class="cta-section">
         <div class="container">
             <div class="cta-card">
-                <h2>Need a Content Platform?</h2>
+                <h2>Interested in My Next.js Skills?</h2>
                 <p>
-                    I specialize in building powerful content management solutions that drive 
-                    engagement and growth. Whether you need a blog, CMS, or custom 
-                    content platform, I'm ready to bring your vision to life.
+                    I'm passionate about building modern, scalable web applications with Next.js 
+                    and TypeScript. If you're looking for an intern who understands current web 
+                    development trends and best practices, I'd love to connect.
                 </p>
                 <div class="cta-buttons">
                     <a href="contact.html" class="btn-primary">
                         <i class="fas fa-comments"></i>
-                        Discuss Your Project
+                        Discuss Internship
                     </a>
                     <a href="projects.html" class="btn-secondary">
                         <i class="fas fa-arrow-left"></i>

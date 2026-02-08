@@ -510,21 +510,51 @@
                 gap: 2rem;
             }
             
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .contact-hero h1 {
-                font-size: 2rem;
+                        
+            /* Social Links */
+            .social-links {
+                margin-top: 2rem;
+                text-align: center;
             }
             
-            .contact-info,
-            .contact-form-container {
-                padding: 1.5rem;
+            .social-links h3 {
+                color: white;
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
             }
-        }
+            
+            .social-icons {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .social-icon {
+                width: 45px;
+                height: 45px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            
+            .social-icon:hover {
+                background: var(--accent);
+                transform: translateY(-3px);
+                border-color: var(--accent);
+            }
+            
+            /* Responsive */
+            @media (max-width: 768px) {
+                .menu-toggle {
+                    display: block;
+                }
+            }
     </style>
 </head>
 <body>
@@ -556,11 +586,11 @@
     <section class="contact-hero">
         <div class="container">
             <h1>Let's Build Something Amazing Together</h1>
-            <p class="subtitle">Ready for Internship Opportunities!</p>
+            <p class="subtitle">Ready for New Projects!</p>
             <p class="description">
-                I'm excited to hear about internship opportunities and discuss how I can contribute 
-                to your team with my web development skills. Whether you need an intern for 
-                frontend development, backend work, or full-stack projects, I'm eager to learn and grow.
+                I'm excited to hear about your project ideas and discuss how I can contribute 
+                with my web development skills. Whether you need frontend development, 
+                backend work, or full-stack projects, I'm ready to help bring your vision to life.
             </p>
         </div>
     </section>
@@ -573,9 +603,9 @@
                 <div class="contact-info">
                     <h2>Get In Touch</h2>
                     <p>
-                        I'm available for internship opportunities, freelance projects, and learning experiences. 
-                        Let's discuss how my web development skills can benefit your team and how I can 
-                        contribute to exciting projects while growing as a developer.
+                        I'm available for freelance projects, contract work, and collaborations. 
+                        Let's discuss how my web development skills can benefit your business and how I can 
+                        contribute to exciting projects with my expertise.
                     </p>
                     
                     <div class="contact-methods">
@@ -585,7 +615,7 @@
                             </div>
                             <div class="contact-details">
                                 <h4>Email</h4>
-                                <p><a href="mailto:muhammadimran@example.com">muhammadimran@example.com</a></p>
+                                <p><a href="mailto:mi6062610@gmail.com">mi6062610@gmail.com</a></p>
                             </div>
                         </div>
                         
@@ -595,7 +625,7 @@
                             </div>
                             <div class="contact-details">
                                 <h4>Phone</h4>
-                                <p><a href="tel:+923001234567">+92 300 1234567</a></p>
+                                <p><a href="tel:+923345636230">+92 334 563 6230</a></p>
                             </div>
                         </div>
                         
@@ -709,6 +739,70 @@
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <a href="index.html" class="logo">
+                            <i class="fas fa-code"></i>
+                            Muhammad<span>Imran</span>
+                        </a>
+                        <p class="footer-description">
+                            MERN Stack Developer passionate about creating innovative web applications.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect With Me</h3>
+                    <div class="social-links">
+                        <a href="mailto:mi6062610@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+923345636230" class="social-link">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="https://github.com/muhammadimran9" class="social-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/muhammadimran" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Technologies</h3>
+                    <div class="tech-icons">
+                        <i class="fab fa-react" title="React"></i>
+                        <i class="fab fa-node-js" title="Node.js"></i>
+                        <i class="fab fa-mongodb" title="MongoDB"></i>
+                        <i class="fab fa-html5" title="HTML5"></i>
+                        <i class="fab fa-css3-alt" title="CSS3"></i>
+                        <i class="fab fa-js" title="JavaScript"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Muhammad Imran. All rights reserved.</p>
+                <p>Built with ❤️ and MERN Stack</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Mobile menu toggle
