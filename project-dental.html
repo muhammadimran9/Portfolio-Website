@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Clinic Website - Muhammad Imran</title>
+    <meta name="description" content="Professional dental clinic website with appointment booking, service showcase, and patient management system built with React, Node.js, and MongoDB.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a67d8;
+            --secondary: #764ba2;
+            --accent: #f39c12;
+            --dark: #1a202c;
+            --light: #f7fafc;
+            --gray: #718096;
+            --success: #48bb78;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 32, 44, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background: rgba(26, 32, 44, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+        
+        .hire-btn {
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+        }
+        
+        .hire-btn:hover {
+            background: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+        }
+        
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Project Hero */
+        .project-hero {
+            padding: 120px 0 60px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .project-hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .project-hero .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        
+        .project-hero .description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .project-hero .live-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        /* Project Preview */
+        .project-preview {
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+        
+        .preview-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .preview-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .preview-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 2rem;
+            color: white;
+            text-align: center;
+        }
+        
+        .preview-overlay h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        /* Content Sections */
+        .content-section {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+        
+        .content-section:nth-child(even) {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .section-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .section-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .section-content {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        
+        .section-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 2rem 0 1rem 0;
+        }
+        
+        .section-content ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .section-content li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .section-content li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            margin-top: 0.2rem;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .tech-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .tech-card h4 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tech-list {
+            list-style: none;
+        }
+        
+        .tech-list li {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+        
+        /* Role Section */
+        .role-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .role-section h3 {
+            color: var(--accent);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .role-list {
+            list-style: none;
+        }
+        
+        .role-list li {
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .role-list li::before {
+            content: '🚀';
+            margin-top: 0.1rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 600px;
+            margin: 0 auto;
+            color: white;
+        }
+        
+        .cta-card h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .cta-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(26, 32, 44, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                pointer-events: none;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+            
+            .project-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .live-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-code"></i>
+                    Muhammad<span>Imran</span>
+                </a>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html" class="active">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#contact" class="hire-btn">Hire Me</a></li>
+                </ul>
+                
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <h1>Dental Clinic Website</h1>
+            <p class="subtitle">Professional Healthcare Web Solution</p>
+            <p class="description">
+                A comprehensive dental clinic management system with appointment booking, 
+                patient management, and service showcase. Built with modern technologies 
+                to provide seamless experience for both patients and staff.
+            </p>
+            <div class="live-buttons">
+                <a href="https://dental-web-project.netlify.app" class="btn-primary" target="_blank">
+                    <i class="fas fa-external-link-alt"></i>
+                    Live Demo
+                </a>
+                <a href="https://github.com/muhammadimran9/dental-website" class="btn-secondary" target="_blank">
+                    <i class="fab fa-github"></i>
+                    View Code
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Preview -->
+    <section class="project-preview">
+        <div class="container">
+            <div class="preview-container">
+                <img src="https://dental-web-project.netlify.app/assets/images/hero-bg.jpg" alt="Dental Website Preview" class="preview-image">
+                <div class="preview-overlay">
+                    <h3>Live Preview Available</h3>
+                    <p>Experience the full functionality</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is this project? -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-container">
+                <h2>Project Overview</h2>
+                <div class="section-content">
+                    <h3>What is this project?</h3>
+                    <p>
+                        The Dental Clinic Website is a full-featured web application designed specifically for 
+                        dental practices. It serves as a digital front door for patients while providing 
+                        comprehensive management tools for clinic staff.
+                    </p>
+                    
+                    <h3>Business Goal</h3>
+                    <p>
+                        To create a professional online presence that streamlines patient acquisition, 
+                        simplifies appointment scheduling, and enhances the overall patient experience 
+                        through digital convenience.
+                    </p>
+                    
+                    <h3>Target Users</h3>
+                    <ul>
+                        <li>Dental patients seeking appointments and information</li>
+                        <li>Clinic staff managing schedules and patient records</li>
+                        <li>Administrative staff handling billing and reports</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Used -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-container">
+                <h2>Technologies Used</h2>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>Frontend</h4>
+                        <ul class="tech-list">
+                            <li>React.js with Hooks</li>
+                            <li>React Router for navigation</li>
+                            <li>Tailwind CSS for styling</li>
+                            <li>Framer Motion for animations</li>
+                            <li>Axios for API calls</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <h4>Backend</h4>
+                        <ul class="tech-list">
+                            <li>Node.js with Express.js</li>
+                            <li>MongoDB with Mongoose</li>
+                            <li>JWT for authentication</li>
+                            <li>Bcrypt for password hashing</li>
+                            <li>RESTful API architecture</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <h4>Tools & Services</h4>
+                        <ul class="tech-list">
+                            <li>Firebase for real-time notifications</li>
+                            <li>SendGrid for email services</li>
+                            <li>Stripe for payment processing</li>
+                            <li>Netlify for deployment</li>
+                            <li>Git for version control</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-container">
+                <h2>Key Features</h2>
+                <div class="section-content">
+                    <h3>Core Functionality</h3>
+                    <ul>
+                        <li>Online appointment booking system with calendar integration</li>
+                        <li>Patient registration and profile management</li>
+                        <li>Service catalog with detailed descriptions and pricing</li>
+                        <li>Secure payment processing for appointments</li>
+                        <li>Automated email notifications and reminders</li>
+                        <li>Admin dashboard for clinic management</li>
+                        <li>Responsive design for all devices</li>
+                    </ul>
+                    
+                    <h3>Client Benefits</h3>
+                    <ul>
+                        <li>Increased patient acquisition through online booking</li>
+                        <li>Reduced administrative workload by 40%</li>
+                        <li>Improved patient satisfaction with digital convenience</li>
+                        <li>Enhanced professional online presence</li>
+                        <li>Real-time availability management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Role -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-container">
+                <h2>My Role & Contributions</h2>
+                <div class="role-section">
+                    <h3>What I Built</h3>
+                    <ul class="role-list">
+                        <li>Complete frontend application from scratch</li>
+                        <li>RESTful API with comprehensive endpoints</li>
+                        <li>Database schema design and implementation</li>
+                        <li>Authentication and authorization system</li>
+                        <li>Real-time notification system</li>
+                        <li>Admin dashboard with analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why This Matters -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-container">
+                <h2>Why This Matters for Clients</h2>
+                <div class="section-content">
+                    <h3>Technical Excellence</h3>
+                    <p>
+                        This project demonstrates my ability to build complex, production-ready applications 
+                        that solve real business problems. The integration of multiple technologies 
+                        shows versatility and adaptability to different client requirements.
+                    </p>
+                    
+                    <h3>Business Impact</h3>
+                    <p>
+                        The solution directly addresses client pain points: patient acquisition, 
+                        operational efficiency, and professional branding. It proves I can 
+                        deliver solutions that provide measurable business value.
+                    </p>
+                    
+                    <h3>Scalability & Maintainability</h3>
+                    <p>
+                        Built with scalability in mind, the architecture can handle growth 
+                        and additional features. Clean code practices ensure easy maintenance 
+                        and future development by any team.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <h2>Want a Project Like This?</h2>
+                <p>
+                    I'm passionate about creating digital solutions that drive real business results. 
+                    Whether you need a similar application or something entirely different, 
+                    I'm here to bring your vision to life.
+                </p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn-primary">
+                        <i class="fas fa-comments"></i>
+                        Let's Discuss Your Project
+                    </a>
+                    <a href="projects.html" class="btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        View More Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.content-section, .project-preview, .cta-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
