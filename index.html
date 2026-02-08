@@ -3,50 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="534e623f-ed6e-4fb8-b2c7-3011f7271ae5"></script>
-    <script src="analytics-tracker.js"></script>
+    <title>Muhammad Imran - Full Stack Developer | Portfolio</title>
+    <meta name="description" content="Expert Full Stack Developer creating stunning websites and web applications. Specialized in React, Node.js, and modern web technologies.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
         }
         
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a67d8;
+            --secondary: #764ba2;
+            --accent: #f39c12;
+            --dark: #1a202c;
+            --light: #f7fafc;
+            --gray: #718096;
+            --success: #48bb78;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
+            color: var(--dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             overflow-x: hidden;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
-            width: 100%;
-            box-sizing: border-box;
+            padding: 0 20px;
         }
         
         /* Navigation */
         nav {
-            background-color: #2c3e50;
-            padding: 1rem 0;
             position: fixed;
-            width: 100vw;
-            max-width: 100%;
             top: 0;
+            width: 100%;
+            background: rgba(26, 32, 44, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background: rgba(26, 32, 44, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
         
         .nav-container {
@@ -56,38 +71,69 @@
         }
         
         .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
             color: white;
-            font-size: 1.8rem;
-            font-weight: 700;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .logo span {
-            color: #3498db;
+            color: var(--accent);
         }
         
         .nav-links {
             display: flex;
             list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 2rem;
+            gap: 2rem;
         }
         
         .nav-links a {
-            color: white;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            position: relative;
         }
         
-        .nav-links a:hover {
-            color: #3498db;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
         }
         
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover,
         .nav-links a.active {
-            color: #3498db;
+            color: var(--accent);
+        }
+        
+        .hire-btn {
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+        }
+        
+        .hire-btn:hover {
+            background: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
         }
         
         .menu-toggle {
@@ -99,323 +145,297 @@
         
         /* Hero Section */
         .hero {
-            padding: 150px 0 100px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            width: 100%;
-            max-width: 100vw;
-            overflow: hidden;
+            padding: 120px 0 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
         }
         
         .hero-content {
-            display: flex;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            width: 100%;
-            max-width: 100%;
-        }
-        
-        .hero-image {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .profile-pic {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-        
-        .profile-pic:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            border: 5px solid rgba(52, 152, 219, 0.8);
+            align-items: center;
+            position: relative;
+            z-index: 1;
         }
         
         .hero-text {
-            flex: 1;
+            color: white;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
         .hero h1 {
             font-size: 3.5rem;
-            margin-bottom: 0.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .typing-text {
-            font-size: 1.8rem;
-            color: #f39c12;
-            margin-bottom: 1.5rem;
-            height: 2.2rem;
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-            max-width: 100%;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            height: 2rem;
+            font-weight: 600;
         }
         
         .typing-text span {
-            position: absolute;
-            top: 0;
-            left: -100%;
-            white-space: nowrap;
-            animation: slideText 20s infinite;
-            opacity: 0;
-            max-width: 100%;
+            animation: fadeInOut 4s ease-in-out infinite;
         }
         
-        .typing-text span:nth-child(1) { animation-delay: 0s; }
-        .typing-text span:nth-child(2) { animation-delay: 4s; }
-        .typing-text span:nth-child(3) { animation-delay: 8s; }
-        .typing-text span:nth-child(4) { animation-delay: 12s; }
-        .typing-text span:nth-child(5) { animation-delay: 16s; }
-        
-        @keyframes slideText {
-            0% { left: -100%; opacity: 0; }
-            2% { left: 0; opacity: 1; }
-            18% { left: 0; opacity: 1; }
-            20% { left: 100%; opacity: 0; }
-            100% { left: 100%; opacity: 0; }
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; transform: translateY(10px); }
+            20%, 80% { opacity: 1; transform: translateY(0); }
         }
         
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
             opacity: 0.9;
-            line-height: 1.6;
+            line-height: 1.7;
         }
         
-        .btn {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 0.8rem 2rem;
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2rem;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid transparent;
         }
         
-        .btn:hover {
-            background-color: #2980b9;
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.3);
         }
         
-
-        .about {
-            padding: 80px 0;
-            background-color: #f8f9fa;
-            width: 100%;
-            max-width: 100vw;
-            overflow: hidden;
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
         }
         
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
         }
         
-        .about p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 1.5rem;
-        }
-        
-
-        .technologies {
-            padding: 80px 0;
-            background-color: white;
-            width: 100%;
-            max-width: 100vw;
-            overflow: hidden;
-        }
-        
-        .tech-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            max-width: 100%;
-        }
-        
-        .tech-category {
-            background-color: #f8f9fa;
-            padding: 2rem;
-            border-radius: 10px;
-            transition: transform 0.3s;
-            width: 100%;
-            max-width: 100%;
-            min-width: 0;
-        }
-        
-        .tech-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .tech-category h3 {
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            text-align: center;
-        }
-        
-        .tech-item {
-            margin-bottom: 1.5rem;
-        }
-        
-        .tech-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background-color: #e0e0e0;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background-color: #3498db;
-            border-radius: 4px;
-            transition: width 2s ease-in-out;
-        }
-        
-
-        .skills {
-            padding: 80px 0;
-            background-color: white;
-            width: 100%;
-            max-width: 100vw;
-            overflow: hidden;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: #2c3e50;
+        .hero-image {
             position: relative;
-            display: inline-block;
-            padding-bottom: 10px;
+            animation: float 4s ease-in-out infinite;
         }
         
-        .section-title h2::after {
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-card::before {
             content: '';
             position: absolute;
-            width: 70px;
-            height: 3px;
-            background-color: #3498db;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s ease-in-out infinite;
         }
         
-        .skills-container {
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .profile-pic {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+        
+        /* Quick Actions */
+        .quick-actions {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .quick-actions h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 800;
+        }
+        
+        .action-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
         
-        .skill-item {
-            text-align: center;
+        .action-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
             padding: 2rem;
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
         }
         
-        .skill-item:hover {
+        .action-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
         
-        .skill-item i {
+        .action-icon {
             font-size: 3rem;
-            color: #3498db;
+            color: var(--accent);
             margin-bottom: 1rem;
         }
         
-        .skill-item h3 {
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-        
-
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-        
-        .social-links {
+        .action-title {
+            font-size: 1.3rem;
+            font-weight: 700;
             margin-bottom: 1rem;
         }
         
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: color 0.3s;
+        .action-description {
+            opacity: 0.9;
+            line-height: 1.6;
         }
         
-        .social-links a:hover {
-            color: #3498db;
-        }
-        
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .slide-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.6s ease;
-        }
-        
-        .slide-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .slide-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.6s ease;
-        }
-        
-        .slide-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-
+        /* Responsive */
         @media (max-width: 768px) {
             .menu-toggle {
                 display: block;
@@ -425,107 +445,74 @@
                 position: fixed;
                 top: 70px;
                 left: 0;
-                background-color: #2c3e50;
-                width: 100%;
+                right: 0;
+                background: rgba(26, 32, 44, 0.98);
                 flex-direction: column;
-                align-items: center;
-                padding: 2rem 0;
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: all 0.5s ease;
+                padding: 2rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                pointer-events: none;
             }
             
             .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-            
-            .nav-links li {
-                margin: 1rem 0;
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
             }
             
             .hero-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-                width: 100%;
-                max-width: 100%;
-            }
-            
-            .tech-categories {
                 grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .tech-category {
-                padding: 1.5rem;
-                min-width: 0;
-            }
-            
-            .profile-pic {
-                width: 200px;
-                height: 200px;
+                gap: 2rem;
+                text-align: center;
             }
             
             .hero h1 {
-                font-size: 2.2rem;
-                word-wrap: break-word;
+                font-size: 2.5rem;
             }
             
-            .hero p {
-                font-size: 1rem;
-                word-wrap: break-word;
+            .hero-buttons {
+                justify-content: center;
             }
             
-            .typing-text {
-                font-size: 1.4rem;
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
             }
             
-            .typing-text span {
-                white-space: normal;
-                word-wrap: break-word;
-            }
-            
-            .container {
-                padding: 0 10px;
-                margin: 0;
-                width: 100%;
-            }
-            
-            .tech-categories {
-                gap: 1rem;
-                padding: 0;
-                margin: 0;
-            }
-            
-            .tech-category {
-                padding: 1.5rem;
-                margin: 0;
-                width: 100%;
-            }
-            
-            .hero-content {
-                padding: 0;
-                margin: 0;
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
-        <div class="container nav-container">
-            <a href="index.html" class="logo">Deve<span>loper</span></a>
-            
-            <div class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-code"></i>
+                    Muhammad<span>Imran</span>
+                </a>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#contact" class="hire-btn">Hire Me</a></li>
+                </ul>
+                
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
-            
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="analytics.html">Analytics</a></li>
-            </ul>
         </div>
     </nav>
 
@@ -533,260 +520,41 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-               
                 <div class="hero-text">
-                    <h1>Affordable Web Developer</h1>
+                    <div class="hero-badge">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Available for Freelance Projects</span>
+                    </div>
+                    
+                    <h1>Building Digital<br>Experiences That Matter</h1>
+                    
                     <div class="typing-text">
-                        <span>Frontend Developer</span>
-                        <span>CSS Developer</span>
-                        <span>React.js Developer</span>
-                        <span>JavaScript Developer</span>
                         <span>Full Stack Developer</span>
                     </div>
-                    <p>A passionate web developer specializing in creating beautiful, functional, and user-friendly websites and applications. Welcome to my portfolio!</p>
-                    <a href="projects.html" class="btn">View My Work</a>
-                </div>
-                 <div class="hero-image">
-                    <img src="about.jpg" alt="Profile Picture" class="profile-pic">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Me Section -->
-    <section class="about">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Myself</h2>
-            </div>
-            <div class="about-content fade-in">
-                <p>I'm a passionate web developer with expertise in creating modern, responsive websites and applications. My journey in technology started with curiosity and has grown into a dedicated career focused on delivering exceptional digital experiences.</p>
-                
-                <p>I specialize in full-stack development using JavaScript, React, Node.js, and modern web technologies. My approach combines clean code practices with user-centered design to create solutions that are both functional and beautiful.</p>
-                
-                <p>I enjoy working on diverse projects, from simple landing pages to complex web applications. Each project teaches me something new and helps me grow as a developer. I believe in continuous learning and staying updated with the latest industry trends.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technologies Section -->
-    <section class="technologies">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Technologies</h2>
-            </div>
-            
-            <div class="tech-categories slide-left">
-                <div class="tech-category">
-                    <h3>Frontend</h3>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>HTML</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 95%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>CSS</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 90%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>Tailwind CSS</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 85%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>JavaScript</span>
-                            <span>88%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 88%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>React.js</span>
-                            <span>82%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 82%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>Next.js</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 75%;"></div>
-                        </div>
+                    
+                    <p class="hero-description">
+                        Transforming ideas into powerful, scalable web applications with modern technologies. 
+                        Specialized in creating exceptional user experiences and robust backend solutions.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="projects.html" class="btn-primary">
+                            <i class="fas fa-briefcase"></i>
+                            View My Work
+                        </a>
+                        <a href="contact.html" class="btn-secondary">
+                            <i class="fas fa-comments"></i>
+                            Let's Talk
+                        </a>
                     </div>
                 </div>
                 
-                <div class="tech-category">
-                    <h3>Backend</h3>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>Express.js</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 80%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>MongoDB</span>
-                            <span>78%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 78%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>Node.js</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 85%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>API Integration</span>
-                            <span>88%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 88%;"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tech-category">
-                    <h3>Tools</h3>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>Git</span>
-                            <span>92%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 92%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>GitHub</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 90%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>Vercel</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 85%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>Netlify</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 80%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>VS Code</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 95%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>Postman</span>
-                            <span>88%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 88%;"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tech-category">
-                    <h3>Other Languages</h3>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>Python</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 75%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>C</span>
-                            <span>70%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 70%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>C++</span>
-                            <span>72%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 72%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>OOP</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 80%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>Dart</span>
-                            <span>70%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 70%;"></div>
-                        </div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-name">
-                            <span>Flutter</span>
-                            <span>50%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 50%;"></div>
+                <div class="hero-image">
+                    <div class="profile-card">
+                        <img src="about.jpg" alt="Muhammad Imran" class="profile-pic">
+                        <div class="status-indicator">
+                            <span class="status-dot"></span>
+                            Available for Hire
                         </div>
                     </div>
                 </div>
@@ -794,53 +562,61 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills">
+    <!-- Stats Section -->
+    <section class="stats">
         <div class="container">
-            <div class="section-title fade-in">
-                <h2>My Skills</h2>
-            </div>
-            
-            <div class="skills-container slide-right">
-                <div class="skill-item">
-                    <i class="fas fa-code"></i>
-                    <h3>Web Development</h3>
-                    <p>HTML, CSS, JavaScript, React, Node.js</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">Projects Completed</div>
                 </div>
-                
-                <div class="skill-item">
-                    <i class="fas fa-paint-brush"></i>
-                    <h3>UI/UX Design</h3>
-                    <p>Creating intuitive and beautiful user interfaces</p>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="30">0</div>
+                    <div class="stat-label">Happy Clients</div>
                 </div>
-                
-                <div class="skill-item">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Responsive Design</h3>
-                    <p>Websites that work on all devices</p>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="5">0</div>
+                    <div class="stat-label">Years Experience</div>
                 </div>
-                
-                <div class="skill-item">
-                    <i class="fas fa-database"></i>
-                    <h3>Backend Development</h3>
-                    <p>Database design and server-side programming</p>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Technologies</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Quick Actions -->
+    <section class="quick-actions">
         <div class="container">
-            <div class="social-links">
-                <a href="https://github.com/muhammadimran9/" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/muhammad-imran-972364373/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.facebook.com/share/1D9isRWV6G/" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://api.whatsapp.com/send?phone=%2B923019316123&amp;context=Afd8Fz9LvufCC7HzEIy3g5StnQ9hDqfXWwF_Lu7v_10lYMRqDO1wxtVVA-DLtIhLUd1rZw0GbuEPPCGospbQXl1G1EnbecaQ8fbgW5JdX9ssizU6UE4u2txdTmMD5hSh6yvzqNwrKgUKdegWioCINPRoVg&amp;source=FB_Page&amp;app=facebook&amp;entry_point=page_cta&amp;fbclid=IwY2xjawMc5NBleHRuA2FlbQIxMABicmlkETE0SzhvWWtvMFlXVEllbE5aAR643UWceWbm5QzH7TRGx_ATWI2E9CcSY3GKmAN17WRF3GgikoPtSNlnOPCBow_aem_sLY0Nh_SlK75yn2V0ss5sg" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <h2>What Can I Help You With?</h2>
+            <div class="action-grid">
+                <a href="projects.html" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="action-title">Browse Projects</div>
+                    <div class="action-description">See my latest work and technical expertise</div>
+                </a>
+                
+                <a href="contact.html" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="action-title">Start a Project</div>
+                    <div class="action-description">Let's discuss your requirements</div>
+                </a>
+                
+                <a href="about.html" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="action-title">Learn About Me</div>
+                    <div class="action-description">My skills, experience, and background</div>
+                </a>
             </div>
-            <p>&copy; 2023 Muhammad Imran. All Rights Reserved.</p>
         </div>
-    </footer>
+    </section>
 
     <script>
         // Mobile menu toggle
@@ -851,31 +627,69 @@
             navLinks.classList.toggle('active');
         });
         
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
         
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Animated counter for stats
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        const countUp = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(countUp, 10);
+                } else {
+                    counter.innerText = target;
                 }
             });
-        }, observerOptions);
+        };
         
-        // Observe all animated elements
-        document.querySelectorAll('.fade-in, .slide-left, .slide-right').forEach(el => {
-            observer.observe(el);
-        });
+        // Trigger counter animation when stats section is visible
+        const statsSection = document.querySelector('.stats');
+        const observerOptions = {
+            threshold: 0.5
+        };
+        
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    countUp();
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+        
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        observer.observe(statsSection);
+        
+        // Typing animation
+        const roles = ['Full Stack Developer', 'Frontend Specialist', 'Backend Developer', 'UI/UX Designer', 'Problem Solver'];
+        let roleIndex = 0;
+        
+        const typeRole = () => {
+            const typingElement = document.querySelector('.typing-text span');
+            roleIndex = (roleIndex + 1) % roles.length;
+            typingElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                typingElement.textContent = roles[roleIndex];
+                typingElement.style.opacity = '1';
+            }, 300);
+        };
+        
+        setInterval(typeRole, 3000);
     </script>
 </body>
 </html>
